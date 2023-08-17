@@ -40,13 +40,6 @@
       object-fit: fill;
       /* filter: brightness(100%); */
     }
-
-    .progress {
-      height: 6px;
-      width: 83%;
-      background-color: var(--orange);
-      border-radius: inherit;
-    }
   </style>
 </head>
 
@@ -67,7 +60,7 @@
 
         <option value="english">English</option>
         <option value="french">French</option>
-        <option value="spanish">Spanish</option>
+        <option value="spanish">Spanish</option>.
 
       </select> -->
 
@@ -333,7 +326,15 @@
             <div class="tab-content">
 
               <p class="section-text">
-                At PyroInsights, our vision is to shed light on the intricate stories of past wildfires that have shaped our landscapes and communities. Through rigorous research and comprehensive analysis, we aim to uncover the underlying reasons behind these devastating events, ranging from natural factors to human activities. By delving into the past, we strive to understand the complexities of fire's role in our ecosystems and the lessons we can learn for the future. But we don't stop there – our commitment extends to making a positive impact. A portion of our proceeds goes towards supporting charitable initiatives dedicated to wildfire prevention, community resilience, and habitat restoration. We believe that by exploring the past and giving back to those affected, we can pave the way for a safer and more sustainable tomorrow.
+                At PyroInsights, our vision is to shed light on the intricate stories of past wildfires that have shaped
+                our landscapes and communities. Through rigorous research and comprehensive analysis, we aim to uncover
+                the underlying reasons behind these devastating events, ranging from natural factors to human
+                activities. By delving into the past, we strive to understand the complexities of fire's role in our
+                ecosystems and the lessons we can learn for the future. But we don't stop there – our commitment extends
+                to making a positive impact. A portion of our proceeds goes towards supporting charitable initiatives
+                dedicated to wildfire prevention, community resilience, and habitat restoration. We believe that by
+                exploring the past and giving back to those affected, we can pave the way for a safer and more
+                sustainable tomorrow.
               </p>
 
               <ul class="tab-list">
@@ -426,7 +427,7 @@
         <div class="container">
 
           <p class="section-subtitle">
-            <img src="./assets/images/subtitle-img-green.png" width="32" height="7" alt="Wavy line">
+            <img src="{{url_for('static',filename='images/subtitle-img-green.png')}}" width="32" height="7" alt="Wavy line">
 
             <span>What We Do</span>
           </p>
@@ -545,12 +546,16 @@
 
           <ul class="donate-list">
 
+
+            {% for key,value in goal_list.items() %}
             <li>
               <div class="donate-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/donate-1.jpg" width="520" height="325" loading="lazy" alt="Elephant"
-                    class="img-cover">
+                  {% set imgname = value[3] %}
+
+                  <img src="{{url_for('static',filename=imgname)}}" width="520" height="325" loading="lazy"
+                    alt="Elephant" class="img-cover">
                 </figure>
 
                 <div class="card-content">
@@ -559,36 +564,39 @@
                     <p class="progress-text">
                       <span>Raised</span>
 
-                      <data value="256">$256</data>
+                      <data value="{{raised}}">$256</data>
                     </p>
-
-                    <data class="progress-value" value="83">83%</data>
+                    <data class="progress-value" value="{{value[1] // value[0] * 100}}">{{value[1] // value[0] *
+                      100}}%</data>
                   </div>
 
-                  <div class="progress-box">
-                    <div class="progress"></div>
-                  </div>
+                  <!-- <div class="progress-box">
+                    <div class="progress" ,style=" height: 6px;
+                    width: {{value[1] // value[0] * 100}}%;
+                    background-color: var(--orange);
+                    border-radius: inherit;"></div>
+                  </div> -->
 
-                  <h3 class="h3 card-title">Raise Hand To Save Animals</h3>
+                  <h3 class="h3 card-title">{{key}}</h3>
 
                   <div class="card-wrapper">
 
                     <p class="card-wrapper-text">
                       <span>Goal</span>
 
-                      <data class="green" value="34562">$34562</data>
+                      <data class="green" value="">{{value[0]}}</data>
                     </p>
 
                     <p class="card-wrapper-text">
                       <span>Raise</span>
 
-                      <data class="yellow" value="562">$562</data>
+                      <data class="yellow" value="{{raised}}">{{value[1]}}</data>
                     </p>
 
                     <p class="card-wrapper-text">
                       <span>To Go</span>
 
-                      <data class="cyan" value="864">$864</data>
+                      <data class="cyan" value="{{left}}">{{value[2]}}</data>
                     </p>
 
                   </div>
@@ -603,184 +611,7 @@
 
               </div>
             </li>
-
-            <li>
-              <div class="donate-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/donate-2.jpg" width="520" height="325" loading="lazy" alt="Elephant"
-                    class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="progress-wrapper">
-                    <p class="progress-text">
-                      <span>Raised</span>
-
-                      <data value="256">$256</data>
-                    </p>
-
-                    <data class="progress-value" value="83">83%</data>
-                  </div>
-
-                  <div class="progress-box">
-                    <div class="progress"></div>
-                  </div>
-
-                  <h3 class="h3 card-title">Raise Hand To Save Animals</h3>
-
-                  <div class="card-wrapper">
-
-                    <p class="card-wrapper-text">
-                      <span>Goal</span>
-
-                      <data class="green" value="34562">$34562</data>
-                    </p>
-
-                    <p class="card-wrapper-text">
-                      <span>Raise</span>
-
-                      <data class="yellow" value="562">$562</data>
-                    </p>
-
-                    <p class="card-wrapper-text">
-                      <span>To Go</span>
-
-                      <data class="cyan" value="864">$864</data>
-                    </p>
-
-                  </div>
-
-                  <button class="btn btn-secondary">
-                    <span>Donation</span>
-
-                    <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-                  </button>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="donate-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/donate-3.jpg" width="520" height="325" loading="lazy" alt="Elephant"
-                    class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="progress-wrapper">
-                    <p class="progress-text">
-                      <span>Raised</span>
-
-                      <data value="256">$256</data>
-                    </p>
-
-                    <data class="progress-value" value="83">83%</data>
-                  </div>
-
-                  <div class="progress-box">
-                    <div class="progress"></div>
-                  </div>
-
-                  <h3 class="h3 card-title">Raise Hand To Save Animals</h3>
-
-                  <div class="card-wrapper">
-
-                    <p class="card-wrapper-text">
-                      <span>Goal</span>
-
-                      <data class="green" value="34562">$34562</data>
-                    </p>
-
-                    <p class="card-wrapper-text">
-                      <span>Raise</span>
-
-                      <data class="yellow" value="562">$562</data>
-                    </p>
-
-                    <p class="card-wrapper-text">
-                      <span>To Go</span>
-
-                      <data class="cyan" value="864">$864</data>
-                    </p>
-
-                  </div>
-
-                  <button class="btn btn-secondary">
-                    <span>Donation</span>
-
-                    <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-                  </button>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="donate-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/donate-4.jpg" width="520" height="325" loading="lazy" alt="Elephant"
-                    class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="progress-wrapper">
-                    <p class="progress-text">
-                      <span>Raised</span>
-
-                      <data value="256">$256</data>
-                    </p>
-
-                    <data class="progress-value" value="83">83%</data>
-                  </div>
-
-                  <div class="progress-box">
-                    <div class="progress"></div>
-                  </div>
-
-                  <h3 class="h3 card-title">Raise Hand To Save Animals</h3>
-
-                  <div class="card-wrapper">
-
-                    <p class="card-wrapper-text">
-                      <span>Goal</span>
-
-                      <data class="green" value="34562">$34562</data>
-                    </p>
-
-                    <p class="card-wrapper-text">
-                      <span>Raise</span>
-
-                      <data class="yellow" value="562">$562</data>
-                    </p>
-
-                    <p class="card-wrapper-text">
-                      <span>To Go</span>
-
-                      <data class="cyan" value="864">$864</data>
-                    </p>
-
-                  </div>
-
-                  <button class="btn btn-secondary">
-                    <span>Donation</span>
-
-                    <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-                  </button>
-
-                </div>
-
-              </div>
-            </li>
-
+            {% endfor %}
           </ul>
 
         </div>
@@ -799,7 +630,7 @@
         <div class="testi-content">
 
           <p class="section-subtitle">
-            <img src="./assets/images/subtitle-img-green.png" width="32" height="7" alt="Wavy line">
+            <img src="{{url_for('static',filename='images/subtitle-img-green.png')}}" width="32" height="7" alt="Wavy line">
 
             <span>Our Testimonials</span>
           </p>
@@ -816,9 +647,25 @@
 
             <div>
               <blockquote class="testi-text">
-                Sed ut perspiciatis unde omnis iste natus error voluptatem accusantium doloremque laudantium totam rem
-                aperiam eaquesa
-                quae abillo inventore veritatis quasi architecto beatae vitae dicta sunt explicabo enimpsam voluptatem
+                In a world where meaningful action can sometimes feel rare, this organization shines as a beacon of hope. Their commitment to charity, catalyzing change, environmental preservation, and animal welfare is nothing short of inspiring.
+
+                I've personally seen the transparency and effectiveness with which they manage charitable contributions. It's a reassuring feeling, knowing that every dollar I donate is being used to drive real change. This organization doesn't just make promises – they deliver results.
+                
+                The impact they've made in communities is evident, from revitalizing neighborhoods to providing education where it's needed most. But what truly stands out to me is their dedication to the environment. Their tree planting, waste reduction, and sustainable initiatives are not only inspiring, but essential for the future of our planet.
+                
+                As an animal lover, their unwavering advocacy for animal welfare speaks to my heart. The rescue efforts, adoption programs, and campaigns against cruelty are not just lip service – they are making a tangible difference in the lives of animals.
+                
+                What I appreciate is their local focus. It's easy to get caught up in global issues, but this organization understands that charity begins at home. Their community projects, whether it's supporting the homeless or organizing essential drives, show their commitment to creating a better world right where we live.
+                
+                Volunteering with them has been an eye-opening experience. They don't just use volunteers – they empower them. The training, resources, and ongoing support they provide ensure that every volunteer is a true force for positive change.
+                
+                Innovation is at the core of their approach. They're not afraid to embrace new technologies, collaborate with other groups, and explore fresh ways to make a lasting impact.
+                
+                Sustainability is another key aspect that sets them apart. It's not just about initiating change; they ensure it lasts. Their educational programs are equipping communities for a better future, and their conservation efforts are preserving the beauty of our planet for generations.
+                
+                Beyond their actions, this organization leaves a legacy of compassion. Their influence goes beyond the surface, inspiring empathy in all of us. In a world that sometimes feels divided, they remind us of the power of kindness and unity.
+                
+                In conclusion, my support for this organization isn't just about the causes they champion – it's a testament to the belief that positive change is possible. Their impact on charity, change, environmental preservation, and animal welfare is a testament to what humanity can achieve when we come together with purpose.
               </blockquote>
 
               <h3 class="testi-name">David S. Neuman</h3>

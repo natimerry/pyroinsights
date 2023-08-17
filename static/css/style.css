@@ -656,10 +656,13 @@ body {
   outline: 3px solid transparent;
   box-shadow: var(--card-shadow);
   transition: var(--transition-2);
+  height: 80%;
+  overflow: hidden;
 }
 
 .service-card:is(:hover, :focus-within) {
   outline-color: var(--orange);
+  height: 100%;
 }
 
 .service-card .card-icon {

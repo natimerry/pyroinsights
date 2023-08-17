@@ -1,91 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
+{% for key,value in goal_list.items() %}
+<li>
+  <div class="donate-card">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FireEcology - Help out research and effort put in to prevent and manage wildires</title>
+    <figure class="card-banner">
+      <img src="{{url_for('static',filename='{{value[3]}}')}}" width="520" height="325" loading="lazy" alt="Elephant"
+        class="img-cover">
+    </figure>
 
-    <!-- TODO: insert favicon here -->
+    <div class="card-content">
 
+      <div class="progress-wrapper">
+        <p class="progress-text">
+          <span>Raised</span>
 
-    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+          <data value="{{raised}}">$256</data>
+        </p>
 
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@300;400;500;700&family=Oswald:wght@600&display=swap"
-        rel="stylesheet">
-</head>
+        <data class="progress-value" value="83">83%</data>
+      </div>
 
-<body>
+      <div class="progress-box">
+        <div class="progress"></div>
+      </div>
 
-    <header class="header">
-        <div class="container">
-            <h1>
-                <a href="#" class="logo" id="">FireEcology</a>
-            </h1>
-<!-- 
-            <select name="language" id="lang-switch">
-                <option value="english"></option>
-                <option value="hindi"></option>
-                <option value="bengali"></option>
-            </select> -->
+      <h3 class="h3 card-title">{{key[0]}}</h3>
 
-            <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
-                <ion-icon name="menu-outline"></ion-icon>
-            </button>
-            <nav class="navbar" data-navbar>
-                <button class="nav-close-btn" aria-label="Close menu" data-nav-close-btn>
-                    <ion-icon name="close-outline"></ion-icon>
-                </button>
-            </nav>
+      <div class="card-wrapper">
 
-            <a href="/" class="logo" id="">FireEcology</a>
+        <p class="card-wrapper-text">
+          <span>Goal</span>
 
-            <ul class="navbar-list">
-                <li>
-                    <a href="/" class="navbar-link" id="" data-nav-link>
-                        <span>Home</span>
-                        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-                    </a>
-                </li>
+          <data class="green" value="">{{value[0]}}</data>
+        </p>
 
-                <li>
-                    <a href="/about" class="navbar-link" id="" data-nav-link>
-                        <span>About</span>
-                        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-                    </a>
-                </li>
+        <p class="card-wrapper-text">
+          <span>Raise</span>
 
-                <li>
-                    <a href="/about" class="navbar-link" id="" data-nav-link>
-                        <span>Donate</span>
-                        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-                    </a>
-                </li>
+          <data class="yellow" value="{{raised}}">{{value[0]}}</data>
+        </p>
 
-                <li>
-                    <a href="/about" class="navbar-link" id="" data-nav-link>
-                        <span>Event</span>
-                        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-                    </a>
-                </li>
+        <p class="card-wrapper-text">
+          <span>To Go</span>
 
-                <li>
-                    <a href="/about" class="navbar-link" id="" data-nav-link>
-                        <span>Contact</span>
-                        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </header>
+          <data class="cyan" value="{{left}}">{{value[0]}}</data>
+        </p>
 
-    <script src="{{url_for('static',filename='js/script.js')}}"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+      </div>
 
-</html>
+      <button class="btn btn-secondary">
+        <span>Donation</span>
+
+        <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+
+  </div>
+</li>
+{% endfor %}
