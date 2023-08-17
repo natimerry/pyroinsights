@@ -1,4 +1,4 @@
-'use strict';
+
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -7,10 +7,20 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 });
+const observer2 = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+      if (entry.isIntersecting){
+          entry.target.classList.add('service-list-shown');
+      }
+  });
+});
 const hiddenElement = document.querySelectorAll(".cta-content-hidden");
+hiddenElement.forEach((el) => observer.observe(el));
+const hiddenbar = document.querySelectorAll(".service-list-hidden");
+hiddenbar.forEach((el) => observer2.observe(el));
 
 
-
+'use strict';
 /**
  * navbar toggle
  */
