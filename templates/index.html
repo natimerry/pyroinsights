@@ -44,6 +44,11 @@
 </head>
 
 <body>
+  <!-- <div data-overlay class="overlay"></div> -->
+  <dialog data-modal class="modal">
+    <div>Torolda</div>
+    <button data-close-modal>Close</button>
+  </dialog>
 
   <!-- 
     - #HEADER
@@ -136,7 +141,7 @@
           <ion-icon name="search-outline"></ion-icon>
         </button>
 
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" data-open-modal>
           <span>Donation</span>
 
           <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
@@ -155,7 +160,7 @@
       <!-- 
         - #HERO
       -->
-
+      
       <section class="hero" id="home">
         <div class="container">
 
@@ -176,7 +181,7 @@
             ultrices gravida.
           </p>
 
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" data-open-modal>
             <span>Donation</span>
 
             <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
@@ -305,7 +310,7 @@
           <div class="about-content">
 
             <p class="section-subtitle">
-              <img src="{{url_for('static',filename='images/subtitle-img-green.png')}}" width="32" height="7"
+              <img src="{{url_for('static',filename='images/subtitle-img-orange.png')}}" width="32" height="7"
                 alt="Wavy line">
 
               <span>Why Choose Us</span>
@@ -427,7 +432,7 @@
         <div class="container">
 
           <p class="section-subtitle">
-            <img src="{{url_for('static',filename='images/subtitle-img-green.png')}}" width="32" height="7" alt="Wavy line">
+            <img src="{{url_for('static',filename='images/subtitle-img-orange.png')}}" width="32" height="7" alt="Wavy line">
 
             <span>What We Do</span>
           </p>
@@ -601,7 +606,7 @@
 
                   </div>
 
-                  <button class="btn btn-secondary">
+                  <button class="btn btn-secondary" data-open-modal>
                     <span>Donation</span>
 
                     <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
@@ -630,7 +635,7 @@
         <div class="testi-content">
 
           <p class="section-subtitle">
-            <img src="{{url_for('static',filename='images/subtitle-img-green.png')}}" width="32" height="7" alt="Wavy line">
+            <img src="{{url_for('static',filename='images/subtitle-img-orange.png')}}" width="32" height="7" alt="Wavy line">
 
             <span>Our Testimonials</span>
           </p>
@@ -638,47 +643,33 @@
           <h2 class="h2 section-title">
             What People Say About <strong>Our Organization</strong>
           </h2>
+          {% for person,text in donatees.items() %}
 
           <div class="testi-card">
 
             <figure class="card-avatar">
-              <img src="./assets/images/testi-avatar.png" width="60" height="60" loading="lazy" alt="David S. Neuman">
+              <img src="{{url_for('static',filename='images/blank-pfp.webp')}}" width="60" height="60" loading="lazy" alt="David S. Neuman">
             </figure>
 
             <div>
               <blockquote class="testi-text">
-                In a world where meaningful action can sometimes feel rare, this organization shines as a beacon of hope. Their commitment to charity, catalyzing change, environmental preservation, and animal welfare is nothing short of inspiring.
-
-                I've personally seen the transparency and effectiveness with which they manage charitable contributions. It's a reassuring feeling, knowing that every dollar I donate is being used to drive real change. This organization doesn't just make promises – they deliver results.
+                <strong>{{text[0]}}</strong>
+                {{text[1]}}
+              <h3 class="testi-name"> -{{person}}
+                <p class="testi-title">Donatee</p>
+              </h3>
                 
-                The impact they've made in communities is evident, from revitalizing neighborhoods to providing education where it's needed most. But what truly stands out to me is their dedication to the environment. Their tree planting, waste reduction, and sustainable initiatives are not only inspiring, but essential for the future of our planet.
-                
-                As an animal lover, their unwavering advocacy for animal welfare speaks to my heart. The rescue efforts, adoption programs, and campaigns against cruelty are not just lip service – they are making a tangible difference in the lives of animals.
-                
-                What I appreciate is their local focus. It's easy to get caught up in global issues, but this organization understands that charity begins at home. Their community projects, whether it's supporting the homeless or organizing essential drives, show their commitment to creating a better world right where we live.
-                
-                Volunteering with them has been an eye-opening experience. They don't just use volunteers – they empower them. The training, resources, and ongoing support they provide ensure that every volunteer is a true force for positive change.
-                
-                Innovation is at the core of their approach. They're not afraid to embrace new technologies, collaborate with other groups, and explore fresh ways to make a lasting impact.
-                
-                Sustainability is another key aspect that sets them apart. It's not just about initiating change; they ensure it lasts. Their educational programs are equipping communities for a better future, and their conservation efforts are preserving the beauty of our planet for generations.
-                
-                Beyond their actions, this organization leaves a legacy of compassion. Their influence goes beyond the surface, inspiring empathy in all of us. In a world that sometimes feels divided, they remind us of the power of kindness and unity.
-                
-                In conclusion, my support for this organization isn't just about the causes they champion – it's a testament to the belief that positive change is possible. Their impact on charity, change, environmental preservation, and animal welfare is a testament to what humanity can achieve when we come together with purpose.
               </blockquote>
-
-              <h3 class="testi-name">David S. Neuman</h3>
-
-              <p class="testi-title">Business Manager</p>
             </div>
 
           </div>
+    
+          {% endfor %}
 
         </div>
 
         <figure class="testi-banner">
-          <img src="./assets/images/testi-banner.jpg" width="960" height="846" loading="lazy" alt="Rhinoceros"
+          <img src="{{url_for('static',filename='images/side-banner-donations.jpg')}}" width="960" height="846" loading="lazy" alt="Rhinoceros"
             class="img-cover">
         </figure>
 
@@ -749,11 +740,11 @@
         <div class="container">
 
           <p class="section-subtitle">
-            <img src="./assets/images/subtitle-img-green.png" width="32" height="7" alt="Wavy line">
+            <img src="./assets/images/subtitle-img-orange.png" width="32" height="7" alt="Wavy line">
 
             <span>Event & Program</span>
 
-            <img src="./assets/images/subtitle-img-green.png" width="32" height="7" alt="Wavy line">
+            <img src="./assets/images/subtitle-img-orange.png" width="32" height="7" alt="Wavy line">
           </p>
 
           <h2 class="h2 section-title">
