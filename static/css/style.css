@@ -477,7 +477,7 @@ body {
 }
 
 .features-item .item-icon {
-  color: var(--orange);
+  color: #f77f00;
   font-size: 5.5rem;
   margin-block-start: 10px;
 }
