@@ -66,23 +66,10 @@ window.addEventListener("scroll", function () {
 
 
 const openbutton = document.querySelectorAll("[data-open-modal]");
-const closebutton = document.querySelector("[data-close-modal]"); 
-const modal = document.querySelector("[data-modal]");
-// const overlay = document.querySelector("[data-overlay]"); 
-
-
 openbutton.forEach(x => {
     console.log(x);
     x.addEventListener("click",() =>{
-        modal.classList.add("open");
-        // overlay.classList.add("open");
+        window.location.replace("/donate");         // overlay.classList.add("open");
         modal.showModal();
       })
-})
-
-
-closebutton.addEventListener("click",() =>{
-  modal.classList.remove("open");
-  // overlay.classList.remove("open");
-  modal.close();
 })

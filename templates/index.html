@@ -28,7 +28,6 @@
 
   <style>
     .hero {
-      /* TODO: change this to inline css and use jinja */
       background-image: url("{{url_for('static',filename='images/forest-fire-banner.jpg')}}");
       background-repeat: no-repeat;
       background-size: cover;
@@ -46,7 +45,19 @@
 <body>
   <!-- <div data-overlay class="overlay"></div> -->
   <dialog data-modal class="modal">
-    <div class="form">Torolda</div>
+
+    <div class="form">
+      <form action="/" method="post">
+        <div class="container">
+          <p>Name:</p>
+          <input type="text" name="name" id="name">
+          <br>
+        </div>
+      </form>
+      <button data-close-modal class="btn btn-primary">Close</button>
+
+
+    </div>
   </dialog>
 
   <!-- 
@@ -99,33 +110,8 @@
           </li>
 
           <li>
-            <a href="#service" class="navbar-link" data-nav-link>
-              <span>Service</span>
-
-              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-            </a>
-          </li>
-
-          <li>
             <a href="#donate" class="navbar-link" data-nav-link>
               <span>Donate</span>
-
-              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#event" class="navbar-link" data-nav-link>
-              <span>Event</span>
-
-              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link" data-nav-link>
-              <span>Contact</span>
-
               <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
             </a>
           </li>
@@ -136,15 +122,17 @@
 
       <div class="header-action">
 
-        <button class="search-btn" aria-label="Search">
+        <!-- <button class="search-btn" aria-label="Search">
           <ion-icon name="search-outline"></ion-icon>
-        </button>
+        </button> -->
+        <a href="#donate">
 
-        <button class="btn btn-primary" data-open-modal>
-          <span>Donation</span>
+          <button class="btn btn-primary">
+            <span>Donation</span>
 
-          <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-        </button>
+            <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </a>
 
       </div>
 
@@ -159,7 +147,7 @@
       <!-- 
         - #HERO
       -->
-      
+
       <section class="hero" id="home">
         <div class="container">
 
@@ -175,16 +163,16 @@
           </h2>
 
           <p class="hero-text">
-            Sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-            suspendisse
-            ultrices gravida.
+            Join us today: Give love for saving forests and animals, your donation makes a world of difference.
           </p>
+          <a href="#donate">
 
-          <button class="btn btn-primary" data-open-modal>
-            <span>Donation</span>
+            <button class="btn btn-primary">
+              <span>Donation</span>
+              <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </a>
 
-            <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-          </button>
 
         </div>
       </section>
@@ -350,14 +338,14 @@
 
                   <p class="tab-text">Charity For Foods</p>
                 </li>
-
+<!-- 
                 <li class="tab-item">
                   <div class="item-icon">
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
 
                   <p class="tab-text">Charity For Education</p>
-                </li>
+                </li> -->
 
                 <li class="tab-item">
                   <div class="item-icon">
@@ -431,7 +419,8 @@
         <div class="container">
 
           <p class="section-subtitle">
-            <img src="{{url_for('static',filename='images/subtitle-img-orange.png')}}" width="32" height="7" alt="Wavy line">
+            <img src="{{url_for('static',filename='images/subtitle-img-orange.png')}}" width="32" height="7"
+              alt="Wavy line">
 
             <span>What We Do</span>
           </p>
@@ -493,11 +482,10 @@
                   <ion-icon name="flower-outline"></ion-icon>
                 </div>
 
-                <h3 class="h3 card-title">Tree Plantation</h3>
+                <h3 class="h3 card-title">Spread Awareness</h3>
 
                 <p class="card-text">
-                  Tempor incididunt ut labores
-                  dolore magna suspene
+                  Through dedicated care and compassion, we rehabilitate animals, helping them heal and thrive anew.
                 </p>
 
                 <a href="#" class="btn-link">
@@ -516,11 +504,10 @@
                   <ion-icon name="boat-outline"></ion-icon>
                 </div>
 
-                <h3 class="h3 card-title">Clear Ocean</h3>
+                <h3 class="h3 card-title">Rehabilitate Animals</h3>
 
                 <p class="card-text">
-                  Tempor incididunt ut labores
-                  dolore magna suspene
+                  "Through dedicated care and compassion, we rehabilitate animals, helping them heal and thrive anew."
                 </p>
 
                 <a href="#" class="btn-link">
@@ -568,9 +555,9 @@
                     <p class="progress-text">
                       <span>Raised</span>
 
-                      <data value="{{raised}}">$256</data>
+                      <data value="{{raised}}">${{value[1]}}</data>
                     </p>
-                    <data class="progress-value" value="{{value[1] // value[0] * 100}}">{{value[1] // value[0] *
+                    <data class="progress-value" value="{{value[1] // value[0] * 100}}">{{value[1] / value[0] *
                       100}}%</data>
                   </div>
 
@@ -604,13 +591,13 @@
                     </p>
 
                   </div>
+                  <a href="{{url_for('donate')}}?goal={{key.replace(' ','+')}}">
+                    <button class="btn btn-secondary" data-open-modal>
+                      <span>Donation</span>
 
-                  <button class="btn btn-secondary" data-open-modal>
-                    <span>Donation</span>
-
-                    <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-                  </button>
-
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+                  </a>
                 </div>
 
               </div>
@@ -634,7 +621,8 @@
         <div class="testi-content">
 
           <p class="section-subtitle">
-            <img src="{{url_for('static',filename='images/subtitle-img-orange.png')}}" width="32" height="7" alt="Wavy line">
+            <img src="{{url_for('static',filename='images/subtitle-img-orange.png')}}" width="32" height="7"
+              alt="Wavy line">
 
             <span>Our Testimonials</span>
           </p>
@@ -647,278 +635,34 @@
           <div class="testi-card">
 
             <figure class="card-avatar">
-              <img src="{{url_for('static',filename='images/blank-pfp.webp')}}" width="60" height="60" loading="lazy" alt="David S. Neuman">
+              <img src="{{url_for('static',filename='images/blank-pfp.webp')}}" width="60" height="60" loading="lazy"
+                alt="David S. Neuman">
             </figure>
 
             <div>
               <blockquote class="testi-text">
                 <strong>{{text[0]}}</strong>
                 {{text[1]}}
-              <h3 class="testi-name"> -{{person}}
-                <p class="testi-title">Donatee</p>
-              </h3>
-                
+                <h3 class="testi-name"> -{{person}}
+                  <p class="testi-title">Donatee</p>
+                </h3>
+
               </blockquote>
             </div>
 
           </div>
-    
+
           {% endfor %}
 
         </div>
 
         <figure class="testi-banner">
-          <img src="{{url_for('static',filename='images/side-banner-donations.jpg')}}" width="960" height="846" loading="lazy" alt="Rhinoceros"
-            class="img-cover">
+          <img src="{{url_for('static',filename='images/side-banner-donations.jpg')}}" width="960" height="846"
+            loading="lazy" alt="Rhinoceros" class="img-cover">
         </figure>
 
       </section>
 
-
-
-
-
-      <!-- 
-        - #PARTNER
-      -->
-
-      <section class="section partner">
-        <div class="container">
-
-          <a href="#" class="partner-logo">
-            <img src="./assets/images/partner-1.png" width="157" height="55" loading="lazy" alt="Children Fund"
-              class="gray">
-
-            <img src="./assets/images/partner-1-active.png" width="157" height="55" loading="lazy" alt="Children Fund"
-              class="color">
-          </a>
-
-          <a href="#" class="partner-logo">
-            <img src="./assets/images/partner-2.png" width="163" height="55" loading="lazy" alt="Non Profit Agency"
-              class="gray">
-
-            <img src="./assets/images/partner-2-active.png" width="163" height="55" loading="lazy"
-              alt="Non Profit Agency" class="color">
-          </a>
-
-          <a href="#" class="partner-logo">
-            <img src="./assets/images/partner-3.png" width="149" height="55" loading="lazy" alt="Rise Hand Help Us"
-              class="gray">
-
-            <img src="./assets/images/partner-3-active.png" width="149" height="55" loading="lazy"
-              alt="Rise Hand Help Us" class="color">
-          </a>
-
-          <a href="#" class="partner-logo">
-            <img src="./assets/images/partner-4.png" width="169" height="58" loading="lazy" alt="Helping" class="gray">
-
-            <img src="./assets/images/partner-4-active.png" width="169" height="58" loading="lazy" alt="Helping"
-              class="color">
-          </a>
-
-          <a href="#" class="partner-logo">
-            <img src="./assets/images/partner-5.png" width="211" height="55" loading="lazy" alt="Poor Fund Organization"
-              class="gray">
-
-            <img src="./assets/images/partner-5-active.png" width="211" height="55" loading="lazy"
-              alt="Poor Fund Organization" class="color">
-          </a>
-
-        </div>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #EVENT
-      -->
-
-      <section class="section event" id="event">
-        <div class="container">
-
-          <p class="section-subtitle">
-            <img src="./assets/images/subtitle-img-orange.png" width="32" height="7" alt="Wavy line">
-
-            <span>Event & Program</span>
-
-            <img src="./assets/images/subtitle-img-orange.png" width="32" height="7" alt="Wavy line">
-          </p>
-
-          <h2 class="h2 section-title">
-            Our Most Popular Causes For <strong>Building Fund</strong>
-          </h2>
-
-          <ul class="event-list">
-
-            <li>
-              <div class="event-card">
-
-                <time class="card-time" datetime="01-05">
-                  <span class="month">Jan</span>
-
-                  <span class="date">05</span>
-                </time>
-
-                <div class="wrapper">
-
-                  <div class="card-content">
-                    <p class="card-subtitle">Ocean Water</p>
-
-                    <h3 class="card-title">Far from the countries Vokalia and Consonantia 2022</h3>
-
-                    <p class="card-text">
-                      Sit amet consectetur adipiscing elit sed do eiusmod tempor
-                    </p>
-                  </div>
-
-                  <button class="btn btn-white">
-                    <span>View Events</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </button>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="event-card">
-
-                <time class="card-time" datetime="02-23">
-                  <span class="month">Feb</span>
-
-                  <span class="date">23</span>
-                </time>
-
-                <div class="wrapper">
-
-                  <div class="card-content">
-                    <p class="card-subtitle">Ocean Water</p>
-
-                    <h3 class="card-title">Far from the countries Vokalia and Consonantia 2022</h3>
-
-                    <p class="card-text">
-                      Sit amet consectetur adipiscing elit sed do eiusmod tempor
-                    </p>
-                  </div>
-
-                  <button class="btn btn-white">
-                    <span>View Events</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </button>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="event-card">
-
-                <time class="card-time" datetime="03-27">
-                  <span class="month">Mar</span>
-
-                  <span class="date">27</span>
-                </time>
-
-                <div class="wrapper">
-
-                  <div class="card-content">
-                    <p class="card-subtitle">Ocean Water</p>
-
-                    <h3 class="card-title">Far from the countries Vokalia and Consonantia 2022</h3>
-
-                    <p class="card-text">
-                      Sit amet consectetur adipiscing elit sed do eiusmod tempor
-                    </p>
-                  </div>
-
-                  <button class="btn btn-white">
-                    <span>View Events</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </button>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-          <button class="btn btn-secondary">
-            <span>Learn More Us</span>
-
-            <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-          </button>
-
-        </div>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #INSTA POST
-      -->
-
-      <section class="insta-post">
-
-        <ul class="insta-post-list">
-
-          <li class="insta-post-item">
-            <a href="#" class="insta-post-link">
-              <img src="./assets/images/insta-1.jpg" width="320" height="300" loading="lazy" alt="Lion"
-                class="img-cover">
-
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li class="insta-post-item">
-            <a href="#" class="insta-post-link">
-              <img src="./assets/images/insta-2.jpg" width="320" height="300" loading="lazy" alt="Deer"
-                class="img-cover">
-
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li class="insta-post-item">
-            <a href="#" class="insta-post-link">
-              <img src="./assets/images/insta-3.jpg" width="320" height="300" loading="lazy" alt="Wild Bear"
-                class="img-cover">
-
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li class="insta-post-item">
-            <a href="#" class="insta-post-link">
-              <img src="./assets/images/insta-4.jpg" width="320" height="300" loading="lazy" alt="Deer"
-                class="img-cover">
-
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li class="insta-post-item">
-            <a href="#" class="insta-post-link">
-              <img src="./assets/images/insta-5.jpg" width="320" height="300" loading="lazy" alt="Horses"
-                class="img-cover">
-
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </section>
 
     </article>
   </main>
@@ -947,7 +691,7 @@
       </ul>
 
       <p class="copyright">
-        Copyright 2022 <a href="#" class="copyright-link">codewithsadee</a>. All Rights Reserved.
+        Copyright 2022 <a href="#" class="copyright-link">PyroInsights</a>. All Rights Reserved.
       </p>
 
     </div>

@@ -127,9 +127,9 @@ button {
   font: inherit;
 }
 
-input {
+/* input {
   width: 100%;
-}
+} */
 
 button {
   cursor: pointer;
@@ -1038,7 +1038,10 @@ body {
   background-color: var(--raisin-black);
   color: var(--white);
   font-family: var(--ff-inter);
-  padding-block: 40px;
+  padding-block: 20px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer .container {
@@ -1679,16 +1682,23 @@ dialog::backdrop {
 
 .form{
   background-color: white; 
-  width: 80vw;
-  height: 80vh;
+  width: 45vw;
+  height: 45vh;
   border-radius: 10px;
   border: 3.5px solid #f77f00;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  align-items: left;
+  justify-content: left;
 }
 
-@keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+.inputBox{
+  width: inherit;
+  border: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 }
+
+                
+
