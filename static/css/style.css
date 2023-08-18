@@ -1662,11 +1662,33 @@ body {
 dialog {
   z-index: 10;
   margin-top: 10px;
-  background: green;
   border: none;
   border-radius: 1rem;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeIn 0.5s;
 }
 
 dialog::backdrop {
-  background-color: #000000;
+  background-color:rgba(0, 0, 0, 0.309); 
+  backdrop-filter: blur(8px); 
+}
+
+.form{
+  background-color: white; 
+  width: 80vw;
+  height: 80vh;
+  border-radius: 10px;
+  border: 3.5px solid #f77f00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
