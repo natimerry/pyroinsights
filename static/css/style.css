@@ -643,9 +643,24 @@ body {
   margin-block: 10px 40px;
 }
 
-.service-list {
+.service-list-hidden {
+  margin-top: -3%;
+  padding-bottom: 20%;
   display: grid;
   gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  opacity: 0;
+  transition: all 2s ease-out;
+}
+
+.service-list-shown {
+  margin-top: 0%;
+  padding: 0%;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  opacity: 1;
+  transition: all 2s;
 }
 
 .service-card {
@@ -1406,7 +1421,7 @@ body {
     padding-bottom: 2%;
     opacity: 0;
     align-self: center;
-    transition: all 1s;
+    transition: all 2s;
   }
 
   .cta-content-shown {
@@ -1423,10 +1438,6 @@ body {
     --fs-4: 5rem;
   }
 
-
-  .service-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
 
 
   .donate-list {
@@ -1497,6 +1508,7 @@ body {
      */
 
   .container {
+    background-color: var(--orange);
     max-width: 1400px;
     width: 100%;
     margin-inline: auto;
